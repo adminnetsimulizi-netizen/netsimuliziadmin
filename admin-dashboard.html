@@ -573,93 +573,31 @@
     /* MOBILE */
 
     @media(max-width:1100px){
-
-      .stats{
-        grid-template-columns:repeat(2,1fr);
-      }
-
-      .content-grid{
-        grid-template-columns:1fr;
-      }
+      .stats{grid-template-columns:repeat(2,1fr);}
+      .content-grid{grid-template-columns:1fr;}
     }
 
     @media(max-width:800px){
-
-      header{
-        padding:0 15px;
-      }
-
-      .admin-name{
-        display:none;
-      }
-
-      .menu-btn{
-        display:block;
-      }
-
-      .layout{
-        display:block;
-      }
-
-      .sidebar{
-        width:100%;
-        display:none;
-        border-right:0;
-        border-bottom:1px solid var(--border);
-      }
-
-      .sidebar.open{
-        display:block;
-      }
-
-      .main{
-        padding:20px 15px;
-      }
-
-      .page-heading{
-        align-items:flex-start;
-      }
-
-      .page-heading h1{
-        font-size:23px;
-      }
-
-      .date-box{
-        display:none;
-      }
+      header{padding:0 15px;}
+      .admin-name{display:none;}
+      .menu-btn{display:block;}
+      .layout{display:block;}
+      .sidebar{width:100%;display:none;border-right:0;border-bottom:1px solid var(--border);}
+      .sidebar.open{display:block;}
+      .main{padding:20px 15px;}
+      .page-heading{align-items:flex-start;}
+      .page-heading h1{font-size:23px;}
+      .date-box{display:none;}
     }
 
     @media(max-width:520px){
-
-      .stats{
-        grid-template-columns:1fr 1fr;
-        gap:10px;
-      }
-
-      .stat-card{
-        padding:15px;
-      }
-
-      .stat-number{
-        font-size:22px;
-      }
-
-      .stat-title{
-        font-size:11px;
-      }
-
-      .quick-actions{
-        grid-template-columns:1fr 1fr;
-      }
-
-      .brand-text{
-        font-size:18px;
-      }
-
-      .brand img{
-        width:38px;
-        height:38px;
-      }
+      .stats{grid-template-columns:1fr 1fr;gap:10px;}
+      .stat-card{padding:15px;}
+      .stat-number{font-size:22px;}
+      .stat-title{font-size:11px;}
+      .quick-actions{grid-template-columns:1fr 1fr;}
+      .brand-text{font-size:18px;}
+      .brand img{width:38px;height:38px;}
     }
   </style>
 </head>
@@ -713,12 +651,12 @@
       <span class="nav-label">Dashboard</span>
     </a>
 
-    <a href="author.html" class="nav-item">
+    <a href="admin-authors.html" class="nav-item">
       <span class="nav-icon">✎</span>
       <span class="nav-label">Authors</span>
     </a>
 
-    <a href="my-stories.html" class="nav-item">
+    <a href="admin-stories.html" class="nav-item">
       <span class="nav-icon">▤</span>
       <span class="nav-label">Stories</span>
     </a>
@@ -747,7 +685,7 @@
       <span class="nav-label">Notifications</span>
     </a>
 
-    <a href="settings.html" class="nav-item">
+    <a href="admin-settings.html" class="nav-item">
       <span class="nav-icon">⚙</span>
       <span class="nav-label">Settings</span>
     </a>
@@ -926,7 +864,7 @@
 
         <div class="quick-actions">
 
-          <a href="author.html" class="quick-action">
+          <a href="admin-authors.html" class="quick-action">
 
             <div class="quick-action-icon">
               ✎
@@ -943,7 +881,7 @@
           </a>
 
 
-          <a href="my-stories.html" class="quick-action">
+          <a href="admin-stories.html" class="quick-action">
 
             <div class="quick-action-icon">
               ▤
@@ -1008,7 +946,7 @@
 
         <h2>Hadithi za Hivi Karibuni</h2>
 
-        <a href="my-stories.html" class="view-all">
+        <a href="admin-stories.html" class="view-all">
           Tazama zote →
         </a>
 
@@ -1101,7 +1039,8 @@
 
 <script>
 
-  const API = "/api";
+  /* FIX: Changed from "/api" to "/functions/api" to match Pages Functions directory */
+  const API = "/functions/api";
 
   /*
    * ADMIN CHECK
@@ -1120,12 +1059,6 @@
   }
 
 
-  /*
-   * Kwa sasa tunaruhusu admin tu.
-   * Kama backend itarudisha role = admin,
-   * dashboard itaendelea moja kwa moja.
-   */
-
   if(
     !currentUser ||
     !currentUser.role ||
@@ -1134,7 +1067,8 @@
 
     alert("Ukurasa huu ni wa Admin pekee.");
 
-    window.location.href = "login.html";
+    /* FIX: Changed from "login.html" to "admin-login.html" */
+    window.location.href = "admin-login.html";
   }
 
 
@@ -1486,10 +1420,6 @@
 
   /*
    * AUTHORS
-   *
-   * Hakuna /api/authors guaranteed bado kwa
-   * backend yetu, kwa hiyo tunajaribu endpoint
-   * bila kuvunja dashboard.
    */
 
   async function loadAuthors(){
@@ -1536,11 +1466,6 @@
 
     }catch(error){
 
-      /*
-       * Endpoint ikiwa bado haipo,
-       * hatuvunji dashboard.
-       */
-
       document.getElementById("authorsCount")
         .textContent = "0";
 
@@ -1551,9 +1476,6 @@
 
   /*
    * USERS
-   *
-   * Endpoint ya users inaweza kuongezwa
-   * baadaye kwenye backend.
    */
 
   async function loadUsers(){
@@ -1599,9 +1521,6 @@
 
   /*
    * LOCAL WITHDRAWAL REQUESTS
-   *
-   * Kwa sasa wallet yetu inatumia localStorage
-   * mpaka withdrawal API ya D1 ijengwe.
    */
 
   function loadWithdrawals(){
@@ -1779,10 +1698,6 @@
     list.prepend(item);
 
 
-    /*
-     * Keep only a few recent activities.
-     */
-
     while(list.children.length > 6){
 
       list.removeChild(
@@ -1845,8 +1760,9 @@
           "netsimulizi_user"
         );
 
+        /* FIX: Changed from "login.html" to "admin-login.html" */
         window.location.href =
-          "login.html";
+          "admin-login.html";
 
       }
     );
