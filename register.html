@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Jisajili — Net Simulizi</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        background: #f6f0e5;
+        color: #191713;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body.dark {
+        background: #111;
+        color: #eee;
+    }
+
+    .top {
+        background: #171512;
+        color: #fff;
+        padding: 14px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+    }
+
+    .brand img {
+        width: 48px;
+        height: 48px;
+        object-fit: contain;
+        border-radius: 8px;
+    }
+
+    .brand-name {
+        color: #d4aa43;
+        font-weight: 900;
+        letter-spacing: 2px;
+        font-size: 18px;
+    }
+
+    .top-actions {
+        display: flex;
+        gap: 8px;
+    }
+
+    .btn {
+        padding: 11px 15px;
+        border-radius: 8px;
+        border: 1px solid #d4aa43;
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .btn:hover {
+        opacity: 0.9;
+    }
+
+    .primary {
+        background: #d4aa43;
+        color: #171512;
+        border: 0;
+        width: 100%;
+        font-weight: 700;
+    }
+
+    .primary:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .wrap {
+        max-width: 1100px;
+        margin: auto;
+        padding: 30px 20px;
+        min-height: calc(100vh - 150px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 520px;
+        background: #fffdf8;
+        border: 1px solid #e4dccd;
+        border-radius: 18px;
+        padding: 30px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    .dark .card {
+        background: #1d1b18;
+        border-color: #38342d;
+        box-shadow: none;
+    }
+
+    .logo-box {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .logo-box img {
+        width: 90px;
+        height: 90px;
+        object-fit: contain;
+    }
+
+    h1 {
+        margin: 8px 0;
+        text-align: center;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #777;
+        margin-bottom: 25px;
+    }
+
+    .dark .subtitle {
+        color: #aaa;
+    }
+
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 7px;
+        font-weight: 700;
+    }
+
+    input {
+        width: 100%;
+        padding: 13px 14px;
+        border: 1px solid #d7d0c4;
+        border-radius: 9px;
+        background: transparent;
+        color: inherit;
+        font-size: 16px;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: #d4aa43;
+    }
+
+    .message {
+        display: none;
+        margin-top: 16px;
+        padding: 12px;
+        border-radius: 8px;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .message.show {
+        display: block;
+    }
+
+    .login-link {
+        text-align: center;
+        margin-top: 22px;
+    }
+
+    .login-link a {
+        color: #a47b28;
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    .footer {
+        background: #171512;
+        color: #aaa;
+        text-align: center;
+        padding: 28px 20px;
+    }
+
+    .footer-logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .footer-logo img {
+        width: 35px;
+        height: 35px;
+        object-fit: contain;
+    }
+
+    .footer-logo span {
+        color: #d4aa43;
+        font-weight: 900;
+        letter-spacing: 2px;
+    }
+
+    @media (max-width: 700px) {
+
+        .top {
+            padding: 12px 15px;
+        }
+
+        .brand img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .brand-name {
+            font-size: 15px;
+        }
+
+        .wrap {
+            padding: 20px 15px;
+        }
+
+        .card {
+            padding: 22px 18px;
+        }
+
+        .logo-box img {
+            width: 75px;
+            height: 75px;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+<header class="top">
+
+```
+<a class="brand" href="index.html">
+    <img src="Logo.png" alt="Net Simulizi Logo">
+    <span class="brand-name">NET SIMULIZI</span>
+</a>
+
+<div class="top-actions">
+
+    <button
+        class="btn"
+        type="button"
+        onclick="document.body.classList.toggle('dark')">
+        ◐
+    </button>
+
+    <button
+        class="btn"
+        type="button"
+        onclick="window.location.href='login.html'">
+        Ingia
+    </button>
+
+</div>
+```
+
+</header>
+
+<main class="wrap">
+
+```
+<section class="card">
+
+    <div class="logo-box">
+        <img src="Logo.png" alt="Net Simulizi">
+    </div>
+
+    <h1>Jisajili</h1>
+
+    <p class="subtitle">
+        Fungua akaunti yako ya Net Simulizi
+    </p>
+
+
+    <form id="registerForm">
+
+        <div class="form-group">
+
+            <label for="username">
+                Username
+            </label>
+
+            <input
+                id="username"
+                name="username"
+                type="text"
+                placeholder="Weka username yako"
+                minlength="3"
+                required
+                autocomplete="username">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="email">
+                Email
+            </label>
+
+            <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Weka email yako"
+                required
+                autocomplete="email">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Angalau characters 8"
+                minlength="8"
+                required
+                autocomplete="new-password">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="confirmPassword">
+                Confirm Password
+            </label>
+
+            <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                placeholder="Rudia password"
+                minlength="8"
+                required
+                autocomplete="new-password">
+
+        </div>
+
+
+        <button
+            id="registerButton"
+            class="btn primary"
+            type="submit">
+
+            Endelea
+
+        </button>
+
+
+        <div
+            id="registerMessage"
+            class="message">
+        </div>
+
+    </form>
+
+
+    <div class="login-link">
+
+        Tayari una akaunti?
+
+        <a href="login.html">
+            Ingia hapa
+        </a>
+
+    </div>
+
+</section>
+```
+
+</main>
+
+<footer class="footer">
+
+```
+<div class="footer-logo">
+
+    <img src="Logo.png" alt="Net Simulizi">
+
+    <span>NET SIMULIZI</span>
+
+</div>
+
+<p>
+    Digital Storytelling Platform
+</p>
+
+<p>
+    © 2026 Net Simulizi
+</p>
+```
+
+</footer>
+
+<script>
+
+const registerForm =
+    document.getElementById("registerForm");
+
+const registerButton =
+    document.getElementById("registerButton");
+
+const registerMessage =
+    document.getElementById("registerMessage");
+
+
+registerForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        const username =
+            document
+                .getElementById("username")
+                .value
+                .trim();
+
+
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim();
+
+
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+
+        const confirmPassword =
+            document
+                .getElementById("confirmPassword")
+                .value;
+
+
+        registerMessage.className =
+            "message show";
+
+        registerMessage.textContent =
+            "Inasajili akaunti...";
+
+
+        registerButton.disabled = true;
+
+
+        if (password !== confirmPassword) {
+
+            registerMessage.textContent =
+                "Passwords hazifanani.";
+
+            registerButton.disabled = false;
+
+            return;
+        }
+
+
+        try {
+
+           const response =
+    await fetch(
+        "https://netsimulizi.pages.dev/api/register",
+        {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify({
+                                username:
+                                    username,
+
+                                email:
+                                    email,
+
+                                password:
+                                    password
+                            })
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                registerMessage.textContent =
+                    data.message ||
+                    "Usajili umeshindikana.";
+
+                registerButton.disabled =
+                    false;
+
+                return;
+            }
+
+
+            registerMessage.textContent =
+                "Akaunti imetengenezwa vizuri!";
+
+
+            registerForm.reset();
+
+
+            setTimeout(
+                function() {
+
+                    window.location.href =
+                        "login.html";
+
+                },
+                1500
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Registration error:",
+                error
+            );
+
+
+            registerMessage.textContent =
+                "Imeshindikana kuwasiliana na Net Simulizi API.";
+
+
+            registerButton.disabled =
+                false;
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>

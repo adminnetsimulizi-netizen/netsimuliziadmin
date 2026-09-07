@@ -1,0 +1,1489 @@
+<!doctype html>
+<html lang="sw">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Reading Mode — Net Simulizi</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background:#f6f0e5;
+    color:#191713;
+    font-family:Arial,sans-serif;
+}
+
+body.dark{
+    background:#111;
+    color:#eee;
+}
+
+.top{
+    background:#171512;
+    color:#fff;
+    padding:12px 16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo-image{
+    height:42px;
+    width:auto;
+    display:block;
+}
+
+.btn{
+    padding:10px 14px;
+    border-radius:8px;
+    border:1px solid #d4aa43;
+    background:transparent;
+    color:inherit;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.primary{
+    background:#d4aa43;
+    color:#171512;
+    border:0;
+}
+
+.wrap{
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+.reader{
+    background:#fffdf8;
+    border:1px solid #e4dccd;
+    border-radius:16px;
+    padding:35px;
+    margin-bottom:20px;
+}
+
+.dark .reader{
+    background:#1d1b18;
+    border-color:#38342d;
+}
+
+.meta{
+    color:#777;
+    font-size:14px;
+    margin-bottom:10px;
+}
+
+.dark .meta{
+    color:#aaa;
+}
+
+.reader h1{
+    margin-top:5px;
+    margin-bottom:25px;
+    font-size:32px;
+}
+
+.content{
+    font-size:19px;
+    line-height:2;
+    user-select:none;
+    -webkit-user-select:none;
+}
+
+.content p{
+    margin:0 0 24px;
+}
+
+.controls{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:35px;
+    padding-top:20px;
+    border-top:1px solid #ddd5c8;
+}
+
+.dark .controls{
+    border-color:#38342d;
+}
+
+.progress-area{
+    margin-top:25px;
+}
+
+.progress-label{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    color:#777;
+    margin-bottom:7px;
+}
+
+.dark .progress-label{
+    color:#aaa;
+}
+
+.progress-bar{
+    width:100%;
+    height:7px;
+    background:#ddd5c8;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+    width:0%;
+    background:#d4aa43;
+    transition:width .3s ease;
+}
+
+.loading{
+    text-align:center;
+    padding:50px 20px;
+    color:#777;
+}
+
+.error{
+    text-align:center;
+    padding:50px 20px;
+    color:#b00020;
+}
+
+.locked{
+    text-align:center;
+    padding:45px 20px;
+}
+
+.lock-icon{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.footer{
+    background:#171512;
+    color:#aaa;
+    text-align:center;
+    padding:30px;
+}
+
+.footer-logo{
+    height:42px;
+    width:auto;
+    margin:auto;
+}
+
+.reader-tools{
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+    margin-bottom:20px;
+}
+
+@media(max-width:700px){
+
+    .top{
+        padding:10px 12px;
+    }
+
+    .logo-image{
+        height:36px;
+    }
+
+    .wrap{
+        padding:10px;
+    }
+
+    .reader{
+        padding:22px 17px;
+        border-radius:12px;
+    }
+
+    .reader h1{
+        font-size:27px;
+    }
+
+    .content{
+        font-size:18px;
+        line-height:1.9;
+    }
+
+    .btn{
+        padding:9px 11px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="top">
+
+    <a href="index.html">
+
+        <img
+            src="Logo.png"
+            alt="Net Simulizi"
+            class="logo-image"
+        >
+
+    </a>
+
+
+    <div>
+
+        <button
+            class="btn"
+            onclick="toggleDark()"
+        >
+            ◐
+        </button>
+
+
+        <button
+            class="btn"
+            onclick="location.href='land.html'"
+        >
+            EN/SW
+        </button>
+
+    </div>
+
+</header>
+
+
+<main class="wrap">
+
+
+    <div class="reader-tools">
+
+        <button
+            class="btn"
+            onclick="decreaseFont()"
+        >
+            A−
+        </button>
+
+
+        <button
+            class="btn"
+            onclick="increaseFont()"
+        >
+            A+
+        </button>
+
+    </div>
+
+
+    <section
+        id="readerContainer"
+        class="reader"
+    >
+
+        <div class="loading">
+            Inapakia sura...
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<footer class="footer">
+
+    <img
+        src="Logo.png"
+        alt="Net Simulizi"
+        class="footer-logo"
+    >
+
+    <p>
+        Digital Storytelling Platform
+    </p>
+
+    <p>
+        © 2026 Net Simulizi
+    </p>
+
+</footer>
+
+
+<script>
+
+const API = "https://netsimulizi.pages.dev/api";
+
+let currentStoryId = null;
+let currentEpisodeId = null;
+let currentEpisodes = [];
+let fontSize = 19;
+let progressTimer = null;
+
+/* =========================
+   DARK MODE
+========================= */
+
+function toggleDark(){
+
+    document.body.classList.toggle("dark");
+
+    localStorage.setItem(
+        "netsimulizi_dark",
+        document.body.classList.contains("dark")
+    );
+
+}
+
+
+function loadDarkMode(){
+
+    if(
+        localStorage.getItem("netsimulizi_dark") === "true"
+    ){
+
+        document.body.classList.add("dark");
+
+    }
+
+}
+
+
+/* =========================
+   FONT SIZE
+========================= */
+
+function loadFontSize(){
+
+    const saved = Number(
+        localStorage.getItem(
+            "netsimulizi_reader_font"
+        )
+    );
+
+    if(saved >= 15 && saved <= 28){
+
+        fontSize = saved;
+
+    }
+
+}
+
+
+function applyFontSize(){
+
+    const content =
+        document.getElementById(
+            "readingContent"
+        );
+
+    if(content){
+
+        content.style.fontSize =
+            fontSize + "px";
+
+    }
+
+}
+
+
+function increaseFont(){
+
+    if(fontSize < 28){
+
+        fontSize++;
+
+        localStorage.setItem(
+            "netsimulizi_reader_font",
+            fontSize
+        );
+
+        applyFontSize();
+
+    }
+
+}
+
+
+function decreaseFont(){
+
+    if(fontSize > 15){
+
+        fontSize--;
+
+        localStorage.setItem(
+            "netsimulizi_reader_font",
+            fontSize
+        );
+
+        applyFontSize();
+
+    }
+
+}
+
+
+/* =========================
+   URL PARAMETERS
+========================= */
+
+function getParameters(){
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+const storyParam =
+    params.get("story_id") ||
+    params.get("story") ||
+    params.get("id");
+
+const episodeParam =
+    params.get("chapter_id") ||
+    params.get("episode") ||
+    params.get("chapter");
+
+    const story =
+        Number(storyParam);
+
+
+    const episode =
+        Number(episodeParam);
+
+
+    currentStoryId =
+        Number.isInteger(story) &&
+        story > 0
+            ? story
+            : null;
+
+
+    currentEpisodeId =
+    Number.isInteger(episode) &&
+    episode > 0
+        ? episode
+        : null;
+
+}
+
+
+/* =========================
+   LOAD STORY
+========================= */
+
+async function loadStory(){
+
+    const response =
+        await fetch(
+            `${API}/stories/${currentStoryId}`
+        );
+
+
+    const data =
+        await response.json();
+
+
+    if(
+        !response.ok ||
+        !data.success ||
+        !data.story
+    ){
+
+        throw new Error(
+            data.message ||
+            "Story haijapatikana."
+        );
+
+    }
+
+
+    return data.story;
+
+}
+
+
+/* =========================
+   LOAD EPISODES
+========================= */
+
+async function loadEpisodes(){
+
+    const response =
+        await fetch(
+            `${API}/stories/${currentStoryId}/episodes`
+        );
+
+
+    const data =
+        await response.json();
+
+
+    if(
+        !response.ok ||
+        !data.success
+    ){
+
+        throw new Error(
+            data.message ||
+            "Episodes hazijapatikana."
+        );
+
+    }
+
+
+    currentEpisodes =
+        Array.isArray(data.episodes)
+            ? data.episodes
+            : [];
+
+
+    return currentEpisodes;
+
+}
+
+
+/* =========================
+   LOAD READER
+========================= */
+
+async function loadReader(){
+
+    const container =
+        document.getElementById(
+            "readerContainer"
+        );
+
+
+    try{
+
+        const story =
+            await loadStory();
+
+
+        const episodes =
+            await loadEpisodes();
+
+
+        if(!episodes.length){
+
+            throw new Error(
+                "Hakuna episodes za story hii."
+            );
+
+        }
+
+
+        const episode =
+            episodes.find(
+                item =>
+                    Number(item.id) ===
+                    Number(currentEpisodeId)
+            );
+
+
+        if(!episode){
+
+            throw new Error(
+                "Episode haijapatikana."
+            );
+
+        }
+
+
+        currentEpisodeId =
+            Number(episode.id);
+
+
+        document.title =
+            `${episode.title} — ${story.title} — Net Simulizi`;
+
+
+        const isFree =
+            Number(episode.is_free) === 1;
+
+
+        if(!isFree){
+
+            showLockedEpisode(
+                story,
+                episode
+            );
+
+            return;
+
+        }
+
+
+        renderReader(
+            story,
+            episode,
+            episodes
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "Reader error:",
+            error
+        );
+
+
+        container.innerHTML = `
+
+            <div class="error">
+
+                <h2>
+                    Imeshindikana kupakia sura
+                </h2>
+
+                <p>
+                    ${escapeHtml(error.message)}
+                </p>
+
+                <br>
+
+                <button
+                    class="btn"
+                    onclick="location.reload()"
+                >
+                    Jaribu tena
+                </button>
+
+                <button
+                    class="btn"
+                    onclick="goToChapters()"
+                >
+                    ← Chapters
+                </button>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================
+   RENDER READER
+========================= */
+
+function renderReader(
+    story,
+    episode,
+    episodes
+){
+
+    const container =
+        document.getElementById(
+            "readerContainer"
+        );
+
+
+    const rawContent =
+        episode.content;
+
+
+    const cleanContent =
+        String(
+            rawContent ?? ""
+        ).trim();
+
+
+    if(!cleanContent){
+
+        container.innerHTML = `
+
+            <div class="error">
+
+                <h2>
+                    Content haijapatikana
+                </h2>
+
+                <p>
+                    Episode imepatikana lakini content yake iko tupu.
+                </p>
+
+                <button
+                    class="btn"
+                    onclick="goToChapters()"
+                >
+                    ← Chapters
+                </button>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const paragraphs =
+        cleanContent
+            .split(/\r?\n+/)
+            .map(
+                paragraph =>
+                    paragraph.trim()
+            )
+            .filter(
+                paragraph =>
+                    paragraph.length > 0
+            );
+
+
+    const contentHtml =
+        paragraphs
+            .map(
+                paragraph =>
+                    `<p>${escapeHtml(paragraph)}</p>`
+            )
+            .join("");
+
+
+    const currentIndex =
+        episodes.findIndex(
+            item =>
+                Number(item.id) ===
+                Number(episode.id)
+        );
+
+
+    const previous =
+    currentIndex > 0
+        ? episodes[currentIndex - 1]
+        : null;
+
+   const next =
+    currentIndex <
+    episodes.length - 1
+        ? episodes[currentIndex + 1]
+        : null;
+
+
+    container.innerHTML = `
+
+        <div class="meta">
+
+            ${escapeHtml(story.title)}
+
+            · CHAPTER
+
+            ${Number(episode.episode_number)}
+
+        </div>
+
+
+        <h1>
+
+            ${escapeHtml(episode.title)}
+
+        </h1>
+
+
+        <div
+            id="readingContent"
+            class="content"
+        >
+
+            ${contentHtml}
+
+        </div>
+
+
+        <div class="progress-area">
+
+            <div class="progress-label">
+
+                <span>
+                    Reading progress
+                </span>
+
+                <span id="progressText">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    id="progressFill"
+                    class="progress-fill"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="controls">
+
+            ${
+                previous
+
+                ?
+
+                `<button
+                    class="btn"
+                    onclick="goToEpisode(${Number(previous.id)})"
+                >
+                    ← Previous
+                </button>`
+
+                :
+
+                `<button
+                    class="btn"
+                    onclick="goToChapters()"
+                >
+                    ← Chapters
+                </button>`
+            }
+
+
+            ${
+                next
+
+                ?
+
+                `<button
+                    class="btn primary"
+                    onclick="goToEpisode(${Number(next.id)})"
+                >
+                    Next →
+                </button>`
+
+                :
+
+                `<button
+                    class="btn primary"
+                    onclick="goToChapters()"
+                >
+                    Chapters →
+                </button>`
+            }
+
+        </div>
+
+    `;
+
+
+    applyFontSize();
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+
+    restoreProgress(
+        story.id,
+        episode.id
+    );
+
+
+    saveProgress(
+        story.id,
+        episode.id,
+        0
+    );
+
+}
+
+
+/* =========================
+   LOCKED EPISODE
+========================= */
+
+function showLockedEpisode(
+    story,
+    episode
+){
+
+    const container =
+        document.getElementById(
+            "readerContainer"
+        );
+
+    const price =
+        Number(
+            episode.price || 0
+        );
+
+    container.innerHTML = `
+
+        <div class="locked">
+
+            <div class="lock-icon">
+                🔒
+            </div>
+
+            <h1>
+                ${escapeHtml(
+                    episode.title
+                )}
+            </h1>
+
+            <p class="meta">
+
+                ${escapeHtml(
+                    story.title
+                )}
+
+                · EPISODE
+
+                ${Number(
+                    episode.episode_number
+                )}
+
+            </p>
+
+            <p>
+                Episode hii inalipiwa ili uweze kuendelea kusoma.
+            </p>
+
+            <p>
+
+                Bei:
+
+                <strong>
+                    TSh ${price.toLocaleString()}
+                </strong>
+
+            </p>
+
+            <br>
+
+            <button
+                class="btn"
+                onclick="goToChapters()"
+            >
+                ← Rudi Episodes
+            </button>
+
+            <button
+                class="btn primary"
+                onclick="paymentComingSoon()"
+            >
+                Fungua Episode
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================
+   PAYMENT
+========================= */
+
+function paymentComingSoon(){
+
+    alert(
+        "Mfumo wa malipo utaunganishwa kwenye hatua ya Payment Gateway."
+    );
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function goToEpisode(
+    episodeId
+){
+
+    location.href =
+        `reader.html?story_id=${currentStoryId}&chapter_id=${episodeId}`;
+
+}
+
+
+function goToChapters(){
+
+    location.href =
+        `chapters.html?id=${currentStoryId}`;
+
+}
+
+
+/* =========================
+   USER
+========================= */
+
+function getCurrentUser(){
+
+    try{
+
+        const stored =
+            localStorage.getItem(
+                "netsimulizi_user"
+            );
+
+
+        if(!stored){
+
+            return ;
+
+        }
+
+
+        const user =
+            JSON.parse(stored);
+
+
+        if(!user || !user.id){
+
+            return ;
+
+        }
+
+
+        return user;
+
+    }catch(error){
+
+        return ;
+
+    }
+
+}
+
+
+/* =========================
+   SAVE PROGRESS
+========================= */
+
+async function saveProgress(
+    storyId,
+    episodeId,
+    percent
+){
+
+    const user =
+        getCurrentUser();
+
+
+    if(!user){
+
+        return;
+
+    }
+
+
+    try{
+
+        await fetch(
+            `${API}/reading-progress`,
+            {
+                method:"POST",
+
+                headers:{
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body:JSON.stringify({
+
+                    user_id:
+                        Number(user.id),
+
+                    story_id:
+                        Number(storyId),
+
+                    episode_id:
+                        Number(episodeId),
+
+                    progress_percent:
+                        Math.max(
+                            0,
+                            Math.min(
+                                100,
+                                Math.round(percent)
+                            )
+                        )
+
+                })
+            }
+        );
+
+    }catch(error){
+
+        console.error(
+            "Progress save failed:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================
+   RESTORE PROGRESS
+========================= */
+
+async function restoreProgress(
+    storyId,
+    episodeId
+){
+
+    const user =
+        getCurrentUser();
+
+
+    if(!user){
+
+        return;
+
+    }
+
+
+    try{
+
+        const response =
+            await fetch(
+                `${API}/reading-progress/${user.id}/${storyId}`
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(
+            !response.ok ||
+            !data.success ||
+            !data.progress
+        ){
+
+            return;
+
+        }
+
+
+        if(
+            Number(
+                data.progress.episode_id
+            ) !== Number(episodeId)
+        ){
+
+            return;
+
+        }
+
+
+        const percent =
+            Number(
+                data.progress.progress_percent || 0
+            );
+
+
+        updateProgressUI(
+            percent
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "Progress load failed:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+function calculateProgress(){
+
+    const content =
+        document.getElementById(
+            "readingContent"
+        );
+
+
+    if(!content){
+
+        return 0;
+
+    }
+
+
+    const contentTop =
+        content.getBoundingClientRect().top +
+        window.scrollY;
+
+
+    const contentHeight =
+        content.offsetHeight;
+
+
+    if(contentHeight <= 0){
+
+        return 0;
+
+    }
+
+
+    const viewed =
+        window.scrollY -
+        contentTop +
+        window.innerHeight;
+
+
+    const progress =
+        (viewed / contentHeight) * 100;
+
+
+    return Math.max(
+        0,
+        Math.min(
+            100,
+            progress
+        )
+    );
+
+}
+
+
+function updateReadingProgress(){
+
+    const percent =
+        calculateProgress();
+
+
+    updateProgressUI(
+        percent
+    );
+
+
+    clearTimeout(
+        progressTimer
+    );
+
+
+    progressTimer =
+        setTimeout(
+            function(){
+
+                saveProgress(
+                    currentStoryId,
+                    currentEpisodeId,
+                    percent
+                );
+
+            },
+            800
+        );
+
+}
+
+
+function updateProgressUI(
+    percent
+){
+
+    const fill =
+        document.getElementById(
+            "progressFill"
+        );
+
+
+    const text =
+        document.getElementById(
+            "progressText"
+        );
+
+
+    const value =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                Number(percent) || 0
+            )
+        );
+
+
+    if(fill){
+
+        fill.style.width =
+            value + "%";
+
+    }
+
+
+    if(text){
+
+        text.textContent =
+            Math.round(value) + "%";
+
+    }
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    updateReadingProgress,
+    {
+        passive:true
+    }
+);
+
+
+/* =========================
+   READING PROTECTION
+========================= */
+
+document.addEventListener(
+    "contextmenu",
+    function(event){
+
+        if(
+            event.target.closest(".content")
+        ){
+
+            event.preventDefault();
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "copy",
+    function(event){
+
+        if(
+            event.target.closest(".content")
+        ){
+
+            event.preventDefault();
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "cut",
+    function(event){
+
+        if(
+            event.target.closest(".content")
+        ){
+
+            event.preventDefault();
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "paste",
+    function(event){
+
+        if(
+            event.target.closest(".content")
+        ){
+
+            event.preventDefault();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHtml(value){
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+getParameters();
+
+loadDarkMode();
+
+loadFontSize();
+
+loadReader();
+
+</script>
+
+</body>
+</html>
