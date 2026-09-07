@@ -515,37 +515,16 @@
 
     /* MOBILE */
     @media(max-width:1000px){
-      .stats{
-        grid-template-columns:repeat(2,1fr);
-      }
-
-      .sidebar{
-        width:220px;
-      }
+      .stats{grid-template-columns:repeat(2,1fr);}
+      .sidebar{width:220px;}
     }
 
     @media(max-width:760px){
-      .topbar{
-        padding:0 14px;
-      }
-
-      .brand{
-        font-size:17px;
-      }
-
-      .brand img{
-        width:36px;
-        height:36px;
-      }
-
-      .admin-badge{
-        display:none;
-      }
-
-      .menu-btn{
-        display:block;
-      }
-
+      .topbar{padding:0 14px;}
+      .brand{font-size:17px;}
+      .brand img{width:36px;height:36px;}
+      .admin-badge{display:none;}
+      .menu-btn{display:block;}
       .sidebar{
         position:fixed;
         left:-270px;
@@ -556,87 +535,27 @@
         transition:.25s;
         overflow-y:auto;
       }
-
-      .sidebar.open{
-        left:0;
-      }
-
-      .content{
-        width:100%;
-        padding:20px 14px;
-      }
-
-      .page-header{
-        align-items:center;
-      }
-
-      .page-header h1{
-        font-size:23px;
-      }
-
-      .page-header p{
-        font-size:13px;
-      }
-
-      .primary-btn{
-        padding:9px 12px;
-        font-size:12px;
-      }
-
-      .stats{
-        grid-template-columns:1fr 1fr;
-        gap:10px;
-      }
-
-      .stat-card{
-        padding:14px;
-      }
-
-      .stat-value{
-        font-size:21px;
-      }
-
-      .toolbar{
-        align-items:stretch;
-      }
-
-      .search-box{
-        width:100%;
-        min-width:100%;
-      }
-
-      .filter{
-        flex:1;
-        min-width:0;
-      }
+      .sidebar.open{left:0;}
+      .content{width:100%;padding:20px 14px;}
+      .page-header{align-items:center;}
+      .page-header h1{font-size:23px;}
+      .page-header p{font-size:13px;}
+      .primary-btn{padding:9px 12px;font-size:12px;}
+      .stats{grid-template-columns:1fr 1fr;gap:10px;}
+      .stat-card{padding:14px;}
+      .stat-value{font-size:21px;}
+      .toolbar{align-items:stretch;}
+      .search-box{width:100%;min-width:100%;}
+      .filter{flex:1;min-width:0;}
     }
 
     @media(max-width:480px){
-      .stats{
-        grid-template-columns:1fr 1fr;
-      }
-
-      .page-header{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-
-      .primary-btn{
-        width:100%;
-      }
-
-      .toolbar{
-        display:grid;
-        grid-template-columns:1fr 1fr;
-      }
-
-      .search-box{
-        grid-column:1 / -1;
-      }
-
-      .filter{
-        width:100%;
-      }
+      .stats{grid-template-columns:1fr 1fr;}
+      .page-header{flex-direction:column;align-items:flex-start;}
+      .primary-btn{width:100%;}
+      .toolbar{display:grid;grid-template-columns:1fr 1fr;}
+      .search-box{grid-column:1 / -1;}
+      .filter{width:100%;}
     }
   </style>
 </head>
@@ -645,151 +564,71 @@
 
   <!-- TOPBAR -->
   <header class="topbar">
-
     <a href="admin-dashboard.html" class="brand">
       <img src="Logo.png" alt="Net Simulizi">
       Net <span>Simulizi</span>
     </a>
-
     <div class="top-actions">
       <div class="admin-badge">ADMIN PANEL</div>
       <button class="menu-btn" id="menuBtn">☰</button>
     </div>
-
   </header>
-
 
   <div class="layout">
 
     <!-- SIDEBAR -->
     <aside class="sidebar" id="sidebar">
-
       <div class="sidebar-title">Main Menu</div>
-
-      <a href="admin-dashboard.html" class="nav-item">
-        <span class="nav-icon">▣</span>
-        Dashboard
-      </a>
-
-      <a href="admin-users.html" class="nav-item">
-        <span class="nav-icon">👥</span>
-        Users
-      </a>
-
-      <a href="admin-authors.html" class="nav-item">
-        <span class="nav-icon">✍</span>
-        Authors
-      </a>
-
-      <a href="admin-stories.html" class="nav-item active">
-        <span class="nav-icon">📚</span>
-        Stories
-      </a>
-
-      <a href="admin-submissions.html" class="nav-item">
-        <span class="nav-icon">📥</span>
-        Submissions
-      </a>
-
+      <a href="admin-dashboard.html" class="nav-item"><span class="nav-icon">▣</span> Dashboard</a>
+      <a href="admin-users.html" class="nav-item"><span class="nav-icon">👥</span> Users</a>
+      <a href="admin-authors.html" class="nav-item"><span class="nav-icon">✍</span> Authors</a>
+      <a href="admin-stories.html" class="nav-item active"><span class="nav-icon">📚</span> Stories</a>
+      <a href="admin-submissions.html" class="nav-item"><span class="nav-icon">📥</span> Submissions</a>
       <div class="sidebar-title" style="margin-top:18px;">Finance</div>
-
-      <a href="admin-withdrawals.html" class="nav-item">
-        <span class="nav-icon">💰</span>
-        Withdrawals
-      </a>
-
-      <a href="wallet.html" class="nav-item">
-        <span class="nav-icon">💳</span>
-        Wallet
-      </a>
-
+      <a href="admin-withdrawals.html" class="nav-item"><span class="nav-icon">💰</span> Withdrawals</a>
+      <a href="wallet.html" class="nav-item"><span class="nav-icon">💳</span> Wallet</a>
       <div class="sidebar-title" style="margin-top:18px;">System</div>
-
-      <a href="admin-settings.html" class="nav-item">
-        <span class="nav-icon">⚙</span>
-        Settings
-      </a>
-
-      <a href="index.html" class="nav-item">
-        <span class="nav-icon">🌐</span>
-        View Website
-      </a>
-
-      <a href="#" class="nav-item" id="logoutBtn">
-        <span class="nav-icon">↪</span>
-        Logout
-      </a>
-
+      <a href="admin-settings.html" class="nav-item"><span class="nav-icon">⚙</span> Settings</a>
+      <a href="index.html" class="nav-item"><span class="nav-icon">🌐</span> View Website</a>
+      <a href="#" class="nav-item" id="logoutBtn"><span class="nav-icon">↪</span> Logout</a>
     </aside>
-
 
     <!-- CONTENT -->
     <main class="content">
-
       <div class="page-header">
-
         <div>
           <h1>Stories</h1>
           <p>Simamia na dhibiti hadithi zote za Net Simulizi.</p>
         </div>
-
-        <a href="submit-story.html" class="primary-btn">
-          + Add Story
-        </a>
-
+        <a href="submit-story.html" class="primary-btn">+ Add Story</a>
       </div>
-
 
       <!-- STATS -->
       <section class="stats">
-
         <div class="stat-card">
-          <div class="stat-top">
-            <span class="stat-label">Jumla ya Hadithi</span>
-            <span class="stat-icon">📚</span>
-          </div>
+          <div class="stat-top"><span class="stat-label">Jumla ya Hadithi</span><span class="stat-icon">📚</span></div>
           <div class="stat-value" id="totalStories">0</div>
         </div>
-
         <div class="stat-card">
-          <div class="stat-top">
-            <span class="stat-label">Approved</span>
-            <span class="stat-icon">✓</span>
-          </div>
+          <div class="stat-top"><span class="stat-label">Approved</span><span class="stat-icon">✓</span></div>
           <div class="stat-value" id="approvedStories">0</div>
         </div>
-
         <div class="stat-card">
-          <div class="stat-top">
-            <span class="stat-label">Pending</span>
-            <span class="stat-icon">⏳</span>
-          </div>
+          <div class="stat-top"><span class="stat-label">Pending</span><span class="stat-icon">⏳</span></div>
           <div class="stat-value" id="pendingStories">0</div>
         </div>
-
         <div class="stat-card">
-          <div class="stat-top">
-            <span class="stat-label">Paid Stories</span>
-            <span class="stat-icon">💰</span>
-          </div>
+          <div class="stat-top"><span class="stat-label">Paid Stories</span><span class="stat-icon">💰</span></div>
           <div class="stat-value" id="paidStories">0</div>
         </div>
-
       </section>
-
 
       <!-- TOOLBAR -->
       <section class="toolbar">
-
         <div class="search-box">
           <span class="search-icon">🔍</span>
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="Tafuta hadithi au mwandishi..."
-          >
+          <input type="text" id="searchInput" placeholder="Tafuta hadithi au mwandishi...">
         </div>
-
         <select class="filter" id="statusFilter">
           <option value="all">Status zote</option>
           <option value="approved">Approved</option>
@@ -797,39 +636,30 @@
           <option value="rejected">Rejected</option>
           <option value="draft">Draft</option>
         </select>
-
         <select class="filter" id="typeFilter">
           <option value="all">Aina zote</option>
           <option value="free">Free</option>
           <option value="paid">Paid</option>
         </select>
-
         <select class="filter" id="languageFilter">
           <option value="all">Lugha zote</option>
           <option value="sw">Kiswahili</option>
           <option value="en">English</option>
         </select>
-
       </section>
-
 
       <!-- TABLE -->
       <section class="table-card">
-
         <div class="table-head">
           <h2>Hadithi Zote</h2>
           <span class="result-count" id="resultCount">0 stories</span>
         </div>
-
         <div class="table-wrap">
-
           <div class="loading" id="loading">
             <div class="spinner"></div>
             Inapakia hadithi...
           </div>
-
           <table id="storiesTable" style="display:none;">
-
             <thead>
               <tr>
                 <th>Story</th>
@@ -840,38 +670,23 @@
                 <th>Actions</th>
               </tr>
             </thead>
-
             <tbody id="storiesBody"></tbody>
-
           </table>
-
           <div class="empty" id="emptyState" style="display:none;">
-
             <div class="empty-icon">📚</div>
-
             <h3>Hakuna hadithi</h3>
-
-            <p>
-              Hakuna hadithi inayolingana na utafutaji wako.
-            </p>
-
+            <p>Hakuna hadithi inayolingana na utafutaji wako.</p>
           </div>
-
         </div>
-
       </section>
-
     </main>
-
   </div>
 
-
 <script>
-
-  const API = "/api";
+  /* FIX: Changed from "/api" to "/functions/api" to match Pages Functions directory */
+  const API = "/functions/api";
 
   let stories = [];
-
 
   /* =========================
      ADMIN CHECK
@@ -900,7 +715,6 @@
     window.location.href = "index.html";
   }
 
-
   /* =========================
      MOBILE MENU
   ========================= */
@@ -912,17 +726,14 @@
     sidebar.classList.toggle("open");
   });
 
-
   /* =========================
      ESCAPE HTML
   ========================= */
 
   function escapeHtml(value){
-
     if(value === null || value === undefined){
       return "";
     }
-
     return String(value)
       .replace(/&/g,"&amp;")
       .replace(/</g,"&lt;")
@@ -931,191 +742,83 @@
       .replace(/'/g,"&#039;");
   }
 
-
   /* =========================
      STATUS
   ========================= */
 
   function normalizeStatus(story){
-
-    const status =
-      story.status ||
-      story.approval_status ||
-      story.state ||
-      "";
-
+    const status = story.status || story.approval_status || story.state || "";
     const value = String(status).toLowerCase();
-
-    if(
-      value === "approved" ||
-      value === "published" ||
-      value === "active"
-    ){
-      return "approved";
-    }
-
-    if(
-      value === "pending" ||
-      value === "submitted" ||
-      value === "waiting"
-    ){
-      return "pending";
-    }
-
-    if(
-      value === "rejected" ||
-      value === "declined"
-    ){
-      return "rejected";
-    }
-
-    if(
-      value === "draft"
-    ){
-      return "draft";
-    }
-
+    if(value === "approved" || value === "published" || value === "active"){ return "approved"; }
+    if(value === "pending" || value === "submitted" || value === "waiting"){ return "pending"; }
+    if(value === "rejected" || value === "declined"){ return "rejected"; }
+    if(value === "draft"){ return "draft"; }
     return "approved";
   }
 
-
   function statusBadge(status){
-
-    if(status === "approved"){
-      return '<span class="badge badge-approved">Approved</span>';
-    }
-
-    if(status === "pending"){
-      return '<span class="badge badge-pending">Pending</span>';
-    }
-
-    if(status === "rejected"){
-      return '<span class="badge badge-rejected">Rejected</span>';
-    }
-
+    if(status === "approved"){ return '<span class="badge badge-approved">Approved</span>'; }
+    if(status === "pending"){ return '<span class="badge badge-pending">Pending</span>'; }
+    if(status === "rejected"){ return '<span class="badge badge-rejected">Rejected</span>'; }
     return '<span class="badge badge-draft">Draft</span>';
   }
-
 
   /* =========================
      STORY TYPE
   ========================= */
 
   function isPaidStory(story){
-
-    const value =
-      story.is_paid ??
-      story.paid ??
-      story.story_type ??
-      story.type ??
-      false;
-
-    if(
-      value === true ||
-      value === 1 ||
-      value === "1" ||
-      String(value).toLowerCase() === "paid"
-    ){
-      return true;
-    }
-
+    const value = story.is_paid ?? story.paid ?? story.story_type ?? story.type ?? false;
+    if(value === true || value === 1 || value === "1" || String(value).toLowerCase() === "paid"){ return true; }
     return false;
   }
 
-
   function typeBadge(story){
-
-    if(isPaidStory(story)){
-      return '<span class="badge badge-paid">Paid</span>';
-    }
-
+    if(isPaidStory(story)){ return '<span class="badge badge-paid">Paid</span>'; }
     return '<span class="badge badge-free">Free</span>';
   }
-
 
   /* =========================
      AUTHOR
   ========================= */
 
   function getAuthor(story){
-
-    return (
-      story.author_name ||
-      story.author ||
-      story.author_username ||
-      "Unknown Author"
-    );
+    return story.author_name || story.author || story.author_username || "Unknown Author";
   }
-
 
   /* =========================
      CATEGORY
   ========================= */
 
   function getCategory(story){
-
-    return (
-      story.category_name ||
-      story.category ||
-      "General"
-    );
+    return story.category_name || story.category || "General";
   }
-
 
   /* =========================
      LANGUAGE
   ========================= */
 
   function getLanguage(story){
-
-    const language =
-      story.language ||
-      story.lang ||
-      "";
-
+    const language = story.language || story.lang || "";
     const value = String(language).toLowerCase();
-
-    if(
-      value === "sw" ||
-      value === "swahili" ||
-      value === "kiswahili"
-    ){
-      return "sw";
-    }
-
-    if(
-      value === "en" ||
-      value === "english"
-    ){
-      return "en";
-    }
-
+    if(value === "sw" || value === "swahili" || value === "kiswahili"){ return "sw"; }
+    if(value === "en" || value === "english"){ return "en"; }
     return value;
   }
-
 
   /* =========================
      COVER
   ========================= */
 
   function getCover(story){
-
-    return (
-      story.cover_url ||
-      story.cover ||
-      story.image ||
-      story.thumbnail ||
-      "Logo.png"
-    );
+    return story.cover_url || story.cover || story.image || story.thumbnail || "Logo.png";
   }
-
 
   /* =========================
      LOAD STORIES
   ========================= */
 
   async function loadStories(){
-
     const loading = document.getElementById("loading");
     const table = document.getElementById("storiesTable");
     const empty = document.getElementById("emptyState");
@@ -1125,585 +828,209 @@
     empty.style.display = "none";
 
     try{
-
       const response = await fetch(API + "/stories");
-
-      if(!response.ok){
-        throw new Error("Stories API failed");
-      }
-
+      if(!response.ok){ throw new Error("Stories API failed"); }
       const data = await response.json();
-
-      if(Array.isArray(data)){
-        stories = data;
-      }else if(Array.isArray(data.stories)){
-        stories = data.stories;
-      }else{
-        stories = [];
-      }
-
+      if(Array.isArray(data)){ stories = data; }
+      else if(Array.isArray(data.stories)){ stories = data.stories; }
+      else{ stories = []; }
       updateStats();
       renderStories();
-
     }catch(error){
-
       console.error(error);
-
       stories = [];
-
       updateStats();
-
       loading.style.display = "none";
       table.style.display = "none";
       empty.style.display = "block";
-
-      document.querySelector("#emptyState h3").textContent =
-        "Imeshindikana kupakia hadithi";
-
-      document.querySelector("#emptyState p").textContent =
-        "Hakuna data iliyopatikana kutoka kwenye API.";
-
+      document.querySelector("#emptyState h3").textContent = "Imeshindikana kupakia hadithi";
+      document.querySelector("#emptyState p").textContent = "Hakuna data iliyopatikana kutoka kwenye API.";
     }
-
   }
-
 
   /* =========================
      STATS
   ========================= */
 
   function updateStats(){
-
-    const approved =
-      stories.filter(
-        story => normalizeStatus(story) === "approved"
-      ).length;
-
-    const pending =
-      stories.filter(
-        story => normalizeStatus(story) === "pending"
-      ).length;
-
-    const paid =
-      stories.filter(
-        story => isPaidStory(story)
-      ).length;
-
-    document.getElementById("totalStories").textContent =
-      stories.length;
-
-    document.getElementById("approvedStories").textContent =
-      approved;
-
-    document.getElementById("pendingStories").textContent =
-      pending;
-
-    document.getElementById("paidStories").textContent =
-      paid;
+    const approved = stories.filter(s => normalizeStatus(s) === "approved").length;
+    const pending = stories.filter(s => normalizeStatus(s) === "pending").length;
+    const paid = stories.filter(s => isPaidStory(s)).length;
+    document.getElementById("totalStories").textContent = stories.length;
+    document.getElementById("approvedStories").textContent = approved;
+    document.getElementById("pendingStories").textContent = pending;
+    document.getElementById("paidStories").textContent = paid;
   }
-
 
   /* =========================
      FILTER
   ========================= */
 
   function getFilteredStories(){
-
-    const search =
-      document.getElementById("searchInput")
-        .value
-        .trim()
-        .toLowerCase();
-
-    const status =
-      document.getElementById("statusFilter").value;
-
-    const type =
-      document.getElementById("typeFilter").value;
-
-    const language =
-      document.getElementById("languageFilter").value;
-
+    const search = document.getElementById("searchInput").value.trim().toLowerCase();
+    const status = document.getElementById("statusFilter").value;
+    const type = document.getElementById("typeFilter").value;
+    const language = document.getElementById("languageFilter").value;
 
     return stories.filter(story => {
+      const title = String(story.title || story.name || "").toLowerCase();
+      const author = String(getAuthor(story)).toLowerCase();
+      const storyStatus = normalizeStatus(story);
+      const paid = isPaidStory(story);
+      const storyLanguage = getLanguage(story);
 
-      const title =
-        String(
-          story.title ||
-          story.name ||
-          ""
-        ).toLowerCase();
+      const matchesSearch = !search || title.includes(search) || author.includes(search);
+      const matchesStatus = status === "all" || storyStatus === status;
+      const matchesType = type === "all" || (type === "paid" && paid) || (type === "free" && !paid);
+      const matchesLanguage = language === "all" || storyLanguage === language;
 
-      const author =
-        String(
-          getAuthor(story)
-        ).toLowerCase();
-
-      const storyStatus =
-        normalizeStatus(story);
-
-      const paid =
-        isPaidStory(story);
-
-      const storyLanguage =
-        getLanguage(story);
-
-
-      const matchesSearch =
-        !search ||
-        title.includes(search) ||
-        author.includes(search);
-
-
-      const matchesStatus =
-        status === "all" ||
-        storyStatus === status;
-
-
-      const matchesType =
-        type === "all" ||
-        (type === "paid" && paid) ||
-        (type === "free" && !paid);
-
-
-      const matchesLanguage =
-        language === "all" ||
-        storyLanguage === language;
-
-
-      return (
-        matchesSearch &&
-        matchesStatus &&
-        matchesType &&
-        matchesLanguage
-      );
-
+      return matchesSearch && matchesStatus && matchesType && matchesLanguage;
     });
-
   }
-
 
   /* =========================
      RENDER
   ========================= */
 
   function renderStories(){
+    const loading = document.getElementById("loading");
+    const table = document.getElementById("storiesTable");
+    const empty = document.getElementById("emptyState");
+    const body = document.getElementById("storiesBody");
+    const resultCount = document.getElementById("resultCount");
 
-    const loading =
-      document.getElementById("loading");
-
-    const table =
-      document.getElementById("storiesTable");
-
-    const empty =
-      document.getElementById("emptyState");
-
-    const body =
-      document.getElementById("storiesBody");
-
-    const resultCount =
-      document.getElementById("resultCount");
-
-
-    const filtered =
-      getFilteredStories();
-
+    const filtered = getFilteredStories();
 
     loading.style.display = "none";
-
-
-    resultCount.textContent =
-      filtered.length +
-      (filtered.length === 1 ? " story" : " stories");
-
+    resultCount.textContent = filtered.length + (filtered.length === 1 ? " story" : " stories");
 
     if(filtered.length === 0){
-
       table.style.display = "none";
       empty.style.display = "block";
-
       return;
     }
-
 
     empty.style.display = "none";
     table.style.display = "table";
 
+    body.innerHTML = filtered.map(story => {
+      const id = story.id || story.story_id || "";
+      const title = story.title || story.name || "Untitled Story";
+      const author = getAuthor(story);
+      const category = getCategory(story);
+      const status = normalizeStatus(story);
+      const cover = getCover(story);
+      const language = getLanguage(story);
+      const languageLabel = language === "sw" ? "Kiswahili" : language === "en" ? "English" : language || "—";
 
-    body.innerHTML =
-      filtered.map(story => {
-
-        const id =
-          story.id ||
-          story.story_id ||
-          "";
-
-        const title =
-          story.title ||
-          story.name ||
-          "Untitled Story";
-
-        const author =
-          getAuthor(story);
-
-        const category =
-          getCategory(story);
-
-        const status =
-          normalizeStatus(story);
-
-        const cover =
-          getCover(story);
-
-        const language =
-          getLanguage(story);
-
-        const languageLabel =
-          language === "sw"
-            ? "Kiswahili"
-            : language === "en"
-              ? "English"
-              : language || "—";
-
-
-        return `
-
-          <tr>
-
-            <td>
-
-              <div class="story-info">
-
-                <img
-                  class="story-cover"
-                  src="${escapeHtml(cover)}"
-                  alt="${escapeHtml(title)}"
-                  onerror="this.src='Logo.png'"
-                >
-
-                <div>
-
-                  <div class="story-name">
-                    ${escapeHtml(title)}
-                  </div>
-
-                  <div class="story-meta">
-                    ID: ${escapeHtml(id)}
-                    · ${escapeHtml(languageLabel)}
-                  </div>
-
-                </div>
-
+      return `
+        <tr>
+          <td>
+            <div class="story-info">
+              <img class="story-cover" src="${escapeHtml(cover)}" alt="${escapeHtml(title)}" onerror="this.src='Logo.png'">
+              <div>
+                <div class="story-name">${escapeHtml(title)}</div>
+                <div class="story-meta">ID: ${escapeHtml(id)} · ${escapeHtml(languageLabel)}</div>
               </div>
-
-            </td>
-
-
-            <td>
-              <span class="author-name">
-                ${escapeHtml(author)}
-              </span>
-            </td>
-
-
-            <td>
-              ${escapeHtml(category)}
-            </td>
-
-
-            <td>
-              ${typeBadge(story)}
-            </td>
-
-
-            <td>
-              ${statusBadge(status)}
-            </td>
-
-
-            <td>
-
-              <div class="actions">
-
-                <button
-                  class="action-btn"
-                  onclick="viewStory('${escapeHtml(id)}')"
-                >
-                  View
-                </button>
-
-                <button
-                  class="action-btn"
-                  onclick="viewEpisodes('${escapeHtml(id)}')"
-                >
-                  Episodes
-                </button>
-
-                ${
-                  status === "pending"
-                  ? `
-                    <button
-                      class="action-btn approve"
-                      onclick="approveStory('${escapeHtml(id)}')"
-                    >
-                      Approve
-                    </button>
-
-                    <button
-                      class="action-btn reject"
-                      onclick="rejectStory('${escapeHtml(id)}')"
-                    >
-                      Reject
-                    </button>
-                  `
-                  : ""
-                }
-
-                <button
-                  class="action-btn delete"
-                  onclick="deleteStory('${escapeHtml(id)}')"
-                >
-                  Delete
-                </button>
-
-              </div>
-
-            </td>
-
-          </tr>
-
-        `;
-
-      }).join("");
-
+            </div>
+          </td>
+          <td><span class="author-name">${escapeHtml(author)}</span></td>
+          <td>${escapeHtml(category)}</td>
+          <td>${typeBadge(story)}</td>
+          <td>${statusBadge(status)}</td>
+          <td>
+            <div class="actions">
+              <button class="action-btn" onclick="viewStory('${escapeHtml(id)}')">View</button>
+              <button class="action-btn" onclick="viewEpisodes('${escapeHtml(id)}')">Episodes</button>
+              ${status === "pending" ? `
+                <button class="action-btn approve" onclick="approveStory('${escapeHtml(id)}')">Approve</button>
+                <button class="action-btn reject" onclick="rejectStory('${escapeHtml(id)}')">Reject</button>
+              ` : ""}
+              <button class="action-btn delete" onclick="deleteStory('${escapeHtml(id)}')">Delete</button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join("");
   }
-
 
   /* =========================
      SEARCH EVENTS
   ========================= */
 
-  document.getElementById("searchInput")
-    .addEventListener("input", renderStories);
-
-  document.getElementById("statusFilter")
-    .addEventListener("change", renderStories);
-
-  document.getElementById("typeFilter")
-    .addEventListener("change", renderStories);
-
-  document.getElementById("languageFilter")
-    .addEventListener("change", renderStories);
-
+  document.getElementById("searchInput").addEventListener("input", renderStories);
+  document.getElementById("statusFilter").addEventListener("change", renderStories);
+  document.getElementById("typeFilter").addEventListener("change", renderStories);
+  document.getElementById("languageFilter").addEventListener("change", renderStories);
 
   /* =========================
      VIEW STORY
   ========================= */
 
   function viewStory(id){
-
-    if(!id){
-      alert("Story ID haijapatikana.");
-      return;
-    }
-
-    window.location.href =
-      "story.html?id=" +
-      encodeURIComponent(id);
-
+    if(!id){ alert("Story ID haijapatikana."); return; }
+    window.location.href = "story.html?id=" + encodeURIComponent(id);
   }
-
 
   /* =========================
      VIEW EPISODES
   ========================= */
 
   function viewEpisodes(id){
-
-    if(!id){
-      alert("Story ID haijapatikana.");
-      return;
-    }
-
-    window.location.href =
-      "chapters.html?id=" +
-      encodeURIComponent(id);
-
+    if(!id){ alert("Story ID haijapatikana."); return; }
+    window.location.href = "chapters.html?id=" + encodeURIComponent(id);
   }
-
 
   /* =========================
      APPROVE
   ========================= */
 
   async function approveStory(id){
-
-    if(!id){
-      alert("Story ID haijapatikana.");
-      return;
-    }
-
-    const story =
-      stories.find(
-        item => String(item.id) === String(id)
-      );
-
-    const title =
-      story?.title ||
-      story?.name ||
-      "hadithi hii";
-
-
-    const confirmed =
-      confirm(
-        "Unataka ku-approve hadithi \"" +
-        title +
-        "\"?"
-      );
-
-
-    if(!confirmed){
-      return;
-    }
-
-
-    /*
-      Backend endpoint itaongezwa
-      wakati admin approval API
-      itakapokamilika.
-    */
-
-    alert(
-      "UI ya Approve iko tayari. " +
-      "Endpoint ya backend ya approval itaunganishwa hatua ya API."
-    );
-
+    if(!id){ alert("Story ID haijapatikana."); return; }
+    const story = stories.find(item => String(item.id) === String(id));
+    const title = story?.title || story?.name || "hadithi hii";
+    const confirmed = confirm('Unataka ku-approve hadithi "' + title + '"?');
+    if(!confirmed){ return; }
+    alert("UI ya Approve iko tayari. Endpoint ya backend ya approval itaunganishwa hatua ya API.");
   }
-
 
   /* =========================
      REJECT
   ========================= */
 
   async function rejectStory(id){
-
-    if(!id){
-      alert("Story ID haijapatikana.");
-      return;
-    }
-
-    const story =
-      stories.find(
-        item => String(item.id) === String(id)
-      );
-
-    const title =
-      story?.title ||
-      story?.name ||
-      "hadithi hii";
-
-
-    const confirmed =
-      confirm(
-        "Unataka ku-reject hadithi \"" +
-        title +
-        "\"?"
-      );
-
-
-    if(!confirmed){
-      return;
-    }
-
-
-    /*
-      Backend endpoint itaongezwa
-      wakati rejection API
-      itakapokamilika.
-    */
-
-    alert(
-      "UI ya Reject iko tayari. " +
-      "Endpoint ya backend ya rejection itaunganishwa hatua ya API."
-    );
-
+    if(!id){ alert("Story ID haijapatikana."); return; }
+    const story = stories.find(item => String(item.id) === String(id));
+    const title = story?.title || story?.name || "hadithi hii";
+    const confirmed = confirm('Unataka ku-reject hadithi "' + title + '"?');
+    if(!confirmed){ return; }
+    alert("UI ya Reject iko tayari. Endpoint ya backend ya rejection itaunganishwa hatua ya API.");
   }
-
 
   /* =========================
      DELETE
   ========================= */
 
   async function deleteStory(id){
-
-    if(!id){
-      alert("Story ID haijapatikana.");
-      return;
-    }
-
-    const story =
-      stories.find(
-        item => String(item.id) === String(id)
-      );
-
-    const title =
-      story?.title ||
-      story?.name ||
-      "hadithi hii";
-
-
-    const confirmed =
-      confirm(
-        "TAHADHARI!\n\n" +
-        "Unataka kufuta hadithi \"" +
-        title +
-        "\"?\n\n" +
-        "Kitendo hiki hakiwezi kurudishwa."
-      );
-
-
-    if(!confirmed){
-      return;
-    }
-
-
-    /*
-      Delete API bado haijaunganishwa.
-      Tutaunganisha kwenye backend
-      baada ya admin APIs kukamilika.
-    */
-
-    alert(
-      "UI ya Delete iko tayari. " +
-      "Delete API itaunganishwa kwenye hatua ya backend."
-    );
-
+    if(!id){ alert("Story ID haijapatikana."); return; }
+    const story = stories.find(item => String(item.id) === String(id));
+    const title = story?.title || story?.name || "hadithi hii";
+    const confirmed = confirm('TAHADHARI!\n\nUnataka kufuta hadithi "' + title + '"?\n\nKitendo hiki hakiwezi kurudishwa.');
+    if(!confirmed){ return; }
+    alert("UI ya Delete iko tayari. Delete API itaunganishwa kwenye hatua ya backend.");
   }
-
 
   /* =========================
      LOGOUT
   ========================= */
 
-  document.getElementById("logoutBtn")
-    .addEventListener("click", function(e){
-
-      e.preventDefault();
-
-      const confirmed =
-        confirm("Unataka kutoka kwenye Admin Panel?");
-
-      if(!confirmed){
-        return;
-      }
-
-      localStorage.removeItem("netsimulizi_user");
-
-      window.location.href =
-        "admin-login.html";
-
-    });
-
+  document.getElementById("logoutBtn").addEventListener("click", function(e){
+    e.preventDefault();
+    const confirmed = confirm("Unataka kutoka kwenye Admin Panel?");
+    if(!confirmed){ return; }
+    localStorage.removeItem("netsimulizi_user");
+    window.location.href = "admin-login.html";
+  });
 
   /* =========================
      START
